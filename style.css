@@ -4,7 +4,7 @@
     --alpha-green: #00ffcc;
     --alpha-blue: #0066ff;
     --font-heading: 'Orbitron', sans-serif;
-    --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;;
+    --font-body: 'Google Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 * {
