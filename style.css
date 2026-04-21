@@ -322,6 +322,12 @@ footer {
     100% { clip: rect(40px, 9999px, 70px, 0); }
 }
 
+@media (max-width: 768px) {
+    .nav-tagline {
+        display: none;
+    }
+}
+
 html {
     scroll-padding-top: 80px;
 }
