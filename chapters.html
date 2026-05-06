@@ -40,31 +40,15 @@
                 </ul>
             </div>
             
-            <div class="card no-tilt">
-                <h3 style="font-family: var(--font-heading); margin-bottom: 40px; color: var(--alpha-green); font-size: 2rem;">Initiation Sequence</h3>
+            <div class="card">
+                <h3 style="font-family: var(--font-heading); margin-bottom: 20px; color: var(--alpha-green); font-size: 2rem;">Initiation Sequence</h3>
+                <p style="color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem;">
+                    Ready to start an Alpha node at your institution? Reach out directly to our Core Team to begin the onboarding and authorization process.
+                </p>
                 
-                <form id="chapter-form" class="premium-form">
-                    <div class="form-group">
-                        <input type="text" id="appName" required>
-                        <label>Operator Name</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="appEmail" required>
-                        <label>Institution Email</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="appSchool" required>
-                        <label>School / Node Location</label>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="appReason" rows="1" required></textarea>
-                        <label>Why initialize an Alpha node?</label>
-                    </div>
-                    
-                    <button type="submit" class="btn-magnetic" style="width: 100%; margin-top: 20px;">
-                        Transmit Application
-                    </button>
-                </form>
+                <a href="mailto:arjunmadaan29@gmail.com?subject=New%20Alpha%20Chapter%20Inquiry" class="btn-magnetic" style="width: 100%; text-align: center;">
+                    EMAIL CORE TEAM
+                </a>
             </div>
 
         </div>
@@ -73,34 +57,5 @@
     <footer><p style="opacity: 0.3; letter-spacing: 2px;">2026 ALPHA INITIATIVE. ALL SYSTEMS NOMINAL.</p></footer>
     
     <script src="script.js"></script>
-
-    <script>
-        document.getElementById('chapter-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevents page reload
-            
-            // Gather form data
-            const name = document.getElementById('appName').value;
-            const email = document.getElementById('appEmail').value;
-            const school = document.getElementById('appSchool').value;
-            const reason = document.getElementById('appReason').value;
-
-            // Construct email payload
-            const subject = encodeURIComponent("Alpha Chapter App: " + school);
-            const body = encodeURIComponent(
-                "OPERATOR LOG\n" +
-                "------------\n" +
-                "Name: " + name + "\n" +
-                "Contact Email: " + email + "\n" +
-                "Location/School: " + school + "\n\n" +
-                "JUSTIFICATION:\n" + reason
-            );
-
-            // Open Gmail compose window targeting your specific email
-            const targetEmail = "arjunmadaan29@gmail.com";
-            const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}&body=${body}`;
-            
-            window.open(gmailLink, '_blank');
-        });
-    </script>
 </body>
 </html>
