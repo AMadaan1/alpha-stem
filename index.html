@@ -4,111 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALPHA | Applied Innovation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <canvas id="particle-canvas"></canvas>
 
     <nav>
-        <div class="logo">
-            ALPHA 
-            <span class="nav-tagline" style="font-size: 0.6em; font-weight: 400; margin-left: 15px; letter-spacing: 1px; vertical-align: middle;">
-                Breaking Barriers. Inspiring Innovation. Fostering Fun.
-            </span>
-        </div>
+        <div class="logo"><a href="index.html">ALPHA</a></div>
         <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#events">Events</a>
-            <a href="#team">Team</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="events.html">Events</a>
+            <a href="media.html">Media</a>
+            <a href="team.html">Team</a>
+            <a href="chapters.html">Chapters</a>
         </div>
     </nav>
 
     <header class="hero parallax-bg">
-        <div class="hero-content">
+        <div class="hero-content reveal">
             <h1 class="glitch" data-text="ALPHA">ALPHA</h1>
-            <p>Break Barriers. Inspire Innovation. Foster Fun.</p>
-            <a href="#events" class="btn-primary">View Events</a>
+            <p style="font-size: 1.2rem; color: #a0a0a0; margin: 20px 0 40px;">Break Barriers. Inspire Innovation. Foster Fun.</p>
+            <a href="events.html" class="btn-primary">Explore Our Mission</a>
         </div>
     </header>
 
-    <section id="about" class="container">
+    <section class="container reveal">
         <h2 class="section-title">THE <span>MISSION</span></h2>
-        <div class="about-grid">
-            <div class="about-text">
-                <p>We bypass legacy infrastructure to foster innovation and excellence in STEM for all that are involved with us. Operating out of the Richmond area, Alpha transforms students to solvers.</p>
-                <p>Through an amazing team operating out of specialized programs such as the Todd Allen Phillips Center for Medical Sciences, we push students forward and move them from equations to excellence.</p>
+        <div class="grid-2">
+            <div>
+                <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 20px;">We bypass legacy infrastructure to foster innovation and excellence in STEM. Operating out of the Richmond area, Alpha transforms students into solvers.</p>
+                <p style="color: #aaa;">Through an amazing team operating out of specialized programs such as the Todd Allen Phillips Center for Medical Sciences, we push students forward and move them from equations to excellence.</p>
             </div>
-            <div class="about-stats">
-                <div class="stat-box">
-                    <h3>100%</h3>
+            <div style="display: flex; gap: 20px;">
+                <div class="card" style="flex: 1; text-align: center;">
+                    <h3 style="font-size: 3rem; color: var(--alpha-green); font-family: var(--font-heading);">100%</h3>
                     <p>Rigor</p>
                 </div>
-                <div class="stat-box">
-                    <h3>0</h3>
+                <div class="card" style="flex: 1; text-align: center;">
+                    <h3 style="font-size: 3rem; color: var(--alpha-blue); font-family: var(--font-heading);">0</h3>
                     <p>Legacy Constraints</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="events" class="parallax-bg-2">
-        <div class="container dark-overlay">
-            <h2 class="section-title">ACTIVE <span>EVENTS</span></h2>
-            <div class="event-cards">
-                <div class="card">
-                    <div class="card-date">DATE TBD</div>
-                    <h3>Clinical Innovation Challenge (CIC)</h3>
-                    <p>Students compete in teams of no more than three in order to find a problem in the clinical system and create innovative strategies to address it. This can include machine learning models for disease prediction or even changes to the triage system.</p>
-                    <a href="mailto: arjunmadaan29@gmail.com" target="_blank" class="btn-secondary">EMAIL ARJUN MADAAN IF INTERESTED</a>
-                </div>
-                <div class="card">
-                    <div class="card-date">DATE TBD</div>
-                    <h3>ALPHA SCIENCE BOWL TOURNAMENT</h3>
-                    <p>Capitalizing on the success from the first Alpha STEM Bowl, this will be a county-wide circuit, following NSB rules, with many different matches across the county so that we can break all barriers, inspire the most innovation, and foster the most fun.</p>
-                    <a href="mailto: arjunmadaan29@gmail.com" class="btn-secondary">EMAIL ARJUN MADAAN IF INTERESTED</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="team" class="container">
-        <h2 class="section-title">THE <span>TEAM</span></h2>
-        
-        <p style="text-align: center; margin-bottom: 50px; color: #aaa;">Currently recruiting. Email <a href="mailto:arjunmadaan29@gmail.com" style="color: var(--alpha-green); text-decoration: none;">arjunmadaan29@gmail.com</a> with inquiries regarding open positions. The application form is linked <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-emdyRUZZOjN9J0C3_39VeVulSagsRn_uMptDPXUhlqNkQQ/viewform" target="_blank" class="btn-secondary">here.</a></p> 
-        
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="team-avatar" style="background-image: url('./ceo.png'); background-size: cover; background-position: center; border-radius: 0; width: 150px; height: 180px;"></div>
-                <h4>ARJUN MADAAN</h4>
-                <p class="role">CEO & Founder. Technical Lead.</p>
-                <p class="bio" style="font-size: 0.9em; margin-top: 10px; color: #ccc;">Arjun is a technical founder operating out of the Todd Allen Phillips Center for Medical Sciences, focusing on applied innovation. An active quantitative researcher, he has been awarded on Kaggle for specific evaluation tasks relating to his work on AI safety via the M.C.A.I.T. benchmark. A biology olympiad competitor, Arjun has won medals in national-level biology olympiads for high performance. He also has given talks on the optimization of generative AI hyperparameters for complex physics problems. At Alpha, he wishes to create a net good and solve real-world structural problems.</p>
-            </div>
-            <div class="team-member">
-                <div class="team-avatar" style="background-image: url('./marketing.png'); background-size: cover; background-position: center; border-radius: 0; width: 150px; height: 180px;"></div>
-                <h4>AASRITH JANGALA</h4>
-                <p class="role">Head of Marketing</p>
-                <p class="bio" style="font-size: 0.9em; margin-top: 10px; color: #ccc;">Aasrith is an 8th grader at Moody Middle School and is thrilled to be serving as Alpha’s Head of Marketing. An avid speaker and debater, Aasrith has participated in MUN, Debate, FBLA, TSA, and HIC conferences all across Henrico County, bringing awards for his excellent speaking skills. He also holds a deep interest in technology, pursuing machine learning, website development, and much more in his free time. Once again, Aasrith is proud to be serving as Alpha’s Head of Marketing and cannot wait to see what students bring to the table at our events!</p>
-            </div>
-            <div class="team-member">
-                <div class="team-avatar blueprint"></div>
-                <h4>NAVIN MANOJ</h4>
-                <p class="role">Head of Logistics</p>
-            </div>
-            <div class="team-member">
-                <div class="team-avatar blueprint"></div>
-                <h4>ADVAITH ATULASIMHA</h4>
-                <p class="role">Head of Event Management</p>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <p>2026 ALPHA. Built for the future.</p>
-    </footer>
-
+    <footer><p>2026 ALPHA. Built for the future.</p></footer>
     <script src="script.js"></script>
 </body>
 </html>
