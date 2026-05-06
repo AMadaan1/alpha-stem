@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALPHA | Applied Innovation</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <canvas id="particle-canvas"></canvas>
 
     <nav>
-        <div class="logo"><a href="index.html">ALPHA</a></div>
+        <div class="logo"><a href="index.html">ALPHA.</a></div>
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
             <a href="events.html">Events</a>
@@ -21,35 +21,54 @@
         </div>
     </nav>
 
-    <header class="hero parallax-bg">
+    <header class="hero">
         <div class="hero-content reveal">
             <h1 class="glitch" data-text="ALPHA">ALPHA</h1>
-            <p style="font-size: 1.2rem; color: #a0a0a0; margin: 20px 0 40px;">Break Barriers. Inspire Innovation. Foster Fun.</p>
-            <a href="events.html" class="btn-primary">Explore Our Events</a>
+            <p style="font-size: 1.5rem; color: #888; margin: 30px 0 50px; font-weight: 200; letter-spacing: 2px;">
+                Break Barriers. Inspire Innovation. Foster Fun.
+            </p>
+            <a href="events.html" class="btn-primary">Initialize Sequence</a>
         </div>
     </header>
 
-    <section class="container reveal">
-        <h2 class="section-title">THE <span>MISSION</span></h2>
-        <div class="grid-2">
+    <div class="marquee-container reveal">
+        <div class="marquee-content">
+            <span>NO LEGACY CONSTRAINTS.</span>
+            <span>100% RIGOR.</span>
+            <span>BUILD THE FUTURE.</span>
+            <span>EQUATIONS TO EXCELLENCE.</span>
+            <span>NO LEGACY CONSTRAINTS.</span>
+            <span>100% RIGOR.</span>
+            <span>BUILD THE FUTURE.</span>
+            <span>EQUATIONS TO EXCELLENCE.</span>
+        </div>
+    </div>
+
+    <section class="container reveal" style="padding-top: 150px;">
+        <h2 class="section-title">THE <span>ARCHITECTURE</span></h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
             <div>
-                <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 20px;">We bypass legacy infrastructure to foster innovation and excellence in STEM. Operating out of the Richmond area, Alpha transforms students into solvers.</p>
-                <p style="color: #aaa;">Through an amazing team operating out of specialized programs such as the Todd Allen Phillips Center for Medical Sciences, we push students forward and move them from equations to excellence.</p>
+                <p style="font-size: 1.4rem; color: #eee; margin-bottom: 30px; font-weight: 200; line-height: 1.8;">
+                    We bypass legacy infrastructure to foster innovation and excellence in STEM. Operating out of the Richmond area, Alpha transforms students into solvers.
+                </p>
+                <p style="color: #666; font-size: 1.1rem; line-height: 1.8;">
+                    Operating out of specialized programs such as the Todd Allen Phillips Center for Medical Sciences, we push students forward and move them from equations to excellence.
+                </p>
             </div>
-            <div style="display: flex; gap: 20px;">
-                <div class="card" style="flex: 1; text-align: center;">
-                    <h3 style="font-size: 3rem; color: var(--alpha-green); font-family: var(--font-heading);">100%</h3>
-                    <p>Rigor</p>
+            <div style="display: flex; gap: 30px; flex-direction: column;">
+                <div class="card" style="text-align: left;">
+                    <h3 style="font-size: 4rem; color: var(--text-light); font-family: var(--font-heading); margin-bottom: -10px;">100%</h3>
+                    <p style="color: var(--alpha-green); font-family: var(--font-heading); letter-spacing: 3px; font-size: 0.9rem;">PURE RIGOR</p>
                 </div>
-                <div class="card" style="flex: 1; text-align: center;">
-                    <h3 style="font-size: 3rem; color: var(--alpha-blue); font-family: var(--font-heading);">0</h3>
-                    <p>Legacy Constraints</p>
+                <div class="card" style="text-align: left;">
+                    <h3 style="font-size: 4rem; color: var(--text-light); font-family: var(--font-heading); margin-bottom: -10px;">ZERO</h3>
+                    <p style="color: #888; font-family: var(--font-heading); letter-spacing: 3px; font-size: 0.9rem;">LEGACY CONSTRAINTS</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer><p>2026 ALPHA. Built for the future.</p></footer>
+    <footer><p style="opacity: 0.3; letter-spacing: 2px;">2026 ALPHA INITIATIVE. ALL SYSTEMS NOMINAL.</p></footer>
     <script src="script.js"></script>
 </body>
 </html>
