@@ -1,10 +1,50 @@
-<!-- Notice the 'no-tilt' class prevents the 3D glitching while typing -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapters | ALPHA</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+
+    <nav>
+        <div class="logo"><a href="index.html">ALPHA.</a></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="media.html">Media</a>
+            <a href="team.html">Team</a>
+            <a href="chapters.html" class="active">Chapters</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="reveal">
+            <h1 class="section-title" style="margin-bottom:0;">GLOBAL <span>NETWORK</span></h1>
+            <p>Start a node. Expand the network.</p>
+        </div>
+    </header>
+
+    <section class="container reveal">
+        <div class="grid-2">
+            <div>
+                <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 20px;">Bring Alpha to Your School</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">We are expanding our infrastructure. By starting an Alpha chapter, you gain access to our curriculum, event blueprints, and our network of STEM innovators. Joining our network allows you to:</p>
+                <ul style="color: #aaa; margin-left: 20px; margin-bottom: 30px; line-height: 2;">
+                    <li>Gain high-level leadership experience in the STEM fields</li>
+                    <li>Take up top organizational roles in major Alpha events</li>
+                    <li>Pioneer unprecedented STEM access in your local community</li>
+                </ul>
+            </div>
+            
             <div class="card no-tilt">
                 <h3 style="font-family: var(--font-heading); margin-bottom: 40px; color: var(--alpha-green); font-size: 2rem;">Initiation Sequence</h3>
                 
                 <form id="chapter-form" class="premium-form">
                     <div class="form-group">
-                        <!-- required attribute is necessary for the CSS :valid pseudo-class to keep the label floating -->
                         <input type="text" id="appName" required>
                         <label>Operator Name</label>
                     </div>
@@ -25,5 +65,42 @@
                         Transmit Application
                     </button>
                 </form>
-
             </div>
+
+        </div>
+    </section>
+
+    <footer><p style="opacity: 0.3; letter-spacing: 2px;">2026 ALPHA INITIATIVE. ALL SYSTEMS NOMINAL.</p></footer>
+    
+    <script src="script.js"></script>
+
+    <script>
+        document.getElementById('chapter-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents page reload
+            
+            // Gather form data
+            const name = document.getElementById('appName').value;
+            const email = document.getElementById('appEmail').value;
+            const school = document.getElementById('appSchool').value;
+            const reason = document.getElementById('appReason').value;
+
+            // Construct email payload
+            const subject = encodeURIComponent("Alpha Chapter App: " + school);
+            const body = encodeURIComponent(
+                "OPERATOR LOG\n" +
+                "------------\n" +
+                "Name: " + name + "\n" +
+                "Contact Email: " + email + "\n" +
+                "Location/School: " + school + "\n\n" +
+                "JUSTIFICATION:\n" + reason
+            );
+
+            // Open Gmail compose window targeting your specific email
+            const targetEmail = "arjunmadaan29@gmail.com";
+            const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}&body=${body}`;
+            
+            window.open(gmailLink, '_blank');
+        });
+    </script>
+</body>
+</html>
