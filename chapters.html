@@ -32,37 +32,66 @@
         <div class="grid-2">
             <div>
                 <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 20px;">Bring Alpha to Your School</h2>
-                <p style="color: #ccc; margin-bottom: 20px;">We are expanding our infrastructure. By starting an Alpha chapter, you gain access to our network of STEM innovators and the opportunity to make a real-world impact. As a chapter founder, you will be:</p>
+                <p style="color: #ccc; margin-bottom: 20px;">We are expanding our infrastructure. By starting an Alpha chapter, you gain access to our curriculum, event blueprints, and our network of STEM innovators. Joining our network allows you to:</p>
                 <ul style="color: #aaa; margin-left: 20px; margin-bottom: 30px; line-height: 2;">
-                    <li><strong>Gaining high-level leadership experience</strong> in the STEM fields.</li>
-                    <li><strong>Taking on executive roles</strong> and operational control in regional Alpha events.</li>
-                    <li><strong>Pioneering STEM access</strong> and breaking educational barriers in your own community.</li>
+                    <li>Gain high-level leadership experience in the STEM fields</li>
+                    <li>Take up top organizational roles in major Alpha events</li>
+                    <li>Pioneer unprecedented STEM access in your local community</li>
                 </ul>
             </div>
             <div class="card">
                 <h3 style="font-family: var(--font-heading); margin-bottom: 20px; color: var(--alpha-green);">Initiation Form</h3>
                 
-                <form action="mailto:arjunmadaan29@gmail.com?subject=New Alpha Chapter Application" method="POST" enctype="text/plain">
-                    
+                <form id="chapter-form">
                     <div class="form-group">
-                        <input type="text" name="Applicant_Name" placeholder="Your Name" required>
+                        <input type="text" id="appName" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" name="Applicant_Email" placeholder="School Email" required>
+                        <input type="email" id="appEmail" placeholder="School Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="Institution_Name" placeholder="School/Institution Name" required>
+                        <input type="text" id="appSchool" placeholder="School/Institution Name" required>
                     </div>
                     <div class="form-group">
-                        <textarea name="Reason_For_Applying" rows="4" placeholder="Why do you want to start an Alpha chapter?" required></textarea>
+                        <textarea id="appReason" rows="4" placeholder="Why do you want to start an Alpha chapter?" required></textarea>
                     </div>
                     <button type="submit" class="btn-primary" style="width: 100%; border: none;">SUBMIT APPLICATION</button>
                 </form>
+
             </div>
         </div>
     </section>
 
     <footer><p>2026 ALPHA. Built for the future.</p></footer>
+    
     <script src="script.js"></script>
+
+    <script>
+        document.getElementById('chapter-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents the page from reloading
+            
+            // Gather the data
+            const name = document.getElementById('appName').value;
+            const email = document.getElementById('appEmail').value;
+            const school = document.getElementById('appSchool').value;
+            const reason = document.getElementById('appReason').value;
+
+            // Construct the email subject and body
+            const subject = encodeURIComponent("New Alpha Chapter Application: " + school);
+            const body = encodeURIComponent(
+                "Name: " + name + "\n" +
+                "Contact Email: " + email + "\n" +
+                "School/Institution: " + school + "\n\n" +
+                "Why do you want to start an Alpha chapter?\n" + reason
+            );
+
+            // Direct Gmail Compose URL
+            const targetEmail = "arjunmadaan29@gmail.com";
+            const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${targetEmail}&su=${subject}&body=${body}`;
+            
+            // Open Gmail in a new tab
+            window.open(gmailLink, '_blank');
+        });
+    </script>
 </body>
 </html>
