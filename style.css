@@ -1,106 +1,371 @@
 :root {
-    --bg-dark: #030303;
-    --text-light: #fdfdfd;
+    --bg-dark: #020202; /* Deep award-winning black */
+    --text-light: #ffffff;
+    --text-muted: #d1d1d1; /* High-contrast soft white */
     --alpha-green: #00ffcc;
     --alpha-blue: #0044ff;
     --font-heading: 'Orbitron', sans-serif;
     --font-body: 'JetBrains Mono', monospace;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; cursor: none !important; /* Hide default cursor */ }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    scroll-behavior: smooth; 
+    cursor: none !important; /* Forces the custom cursor */
+}
 
 body {
     background-color: var(--bg-dark);
     color: var(--text-light);
     font-family: var(--font-body);
-    line-height: 1.6;
+    line-height: 1.8;
     overflow-x: hidden;
-    /* Subtle noise texture for premium feel */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    /* Subtle noise texture for premium editorial feel */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
-/* Custom Cursor */
+/* =========================================
+   1. CUSTOM INVERTING CURSOR
+   ========================================= */
 #custom-cursor {
-    position: fixed; top: 0; left: 0;
-    width: 20px; height: 20px;
-    border: 1px solid var(--alpha-green);
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 12px; 
+    height: 12px;
+    background-color: var(--alpha-green);
     border-radius: 50%;
-    pointer-events: none; z-index: 99999;
+    pointer-events: none; 
+    z-index: 99999;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
-    mix-blend-mode: difference;
+    transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), height 0.3s cubic-bezier(0.19, 1, 0.22, 1), background-color 0.3s;
+    mix-blend-mode: exclusion; /* Makes cursor invert colors dynamically over text/images */
 }
+
 #custom-cursor.hover {
-    width: 50px; height: 50px;
-    background-color: var(--text-light);
-    border-color: transparent;
+    width: 60px; 
+    height: 60px;
+    background-color: #fff;
 }
 
-/* Particles */
-#particle-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; }
+/* =========================================
+   2. TYPOGRAPHY & LAYOUT UTILITIES
+   ========================================= */
+p { 
+    color: var(--text-muted); 
+    font-weight: 300; 
+    font-size: 1.1rem; 
+}
 
-/* Ultra-Glass Nav */
+.container { 
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 150px 20px 100px; 
+}
+
+.section-title { 
+    font-family: var(--font-heading); 
+    font-size: 4rem; 
+    margin-bottom: 60px; 
+    letter-spacing: -1px; 
+    text-transform: uppercase; 
+    font-weight: 900; 
+}
+
+.section-title span { 
+    color: transparent; 
+    -webkit-text-stroke: 1px var(--alpha-green); 
+}
+
+/* =========================================
+   3. ULTRA-GLASS NAVIGATION
+   ========================================= */
 nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 25px 50px; background: rgba(3, 3, 3, 0.4);
-    backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px);
-    position: fixed; width: 100%; top: 0; z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 25px 50px; 
+    background: rgba(2, 2, 2, 0.5);
+    backdrop-filter: blur(25px) saturate(200%); 
+    -webkit-backdrop-filter: blur(25px);
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-.logo a { font-family: var(--font-heading); font-weight: 900; font-size: 1.8rem; letter-spacing: 5px; color: var(--text-light); text-decoration: none; text-shadow: 0 0 10px rgba(0, 255, 204, 0.3); }
+
+.logo a { 
+    font-family: var(--font-heading); 
+    font-weight: 900; 
+    font-size: 1.8rem; 
+    letter-spacing: 5px; 
+    color: var(--text-light); 
+    text-decoration: none; 
+}
+
 .nav-links a {
-    color: #888; text-decoration: none; margin-left: 40px;
-    font-family: var(--font-heading); font-size: 0.85rem; letter-spacing: 1px;
-    transition: all 0.4s ease; text-transform: uppercase;
+    color: var(--text-muted); 
+    text-decoration: none; 
+    margin-left: 40px;
+    font-family: var(--font-heading); 
+    font-size: 0.85rem; 
+    letter-spacing: 1.5px;
+    transition: color 0.4s ease; 
+    text-transform: uppercase;
 }
-.nav-links a:hover, .nav-links a.active { color: var(--alpha-green); text-shadow: 0 0 20px var(--alpha-green); }
 
-/* Infinite Marquee */
+.nav-links a:hover, .nav-links a.active { 
+    color: var(--alpha-green); 
+}
+
+/* =========================================
+   4. GLITCH HERO ANIMATION
+   ========================================= */
+.hero { 
+    height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+}
+
+.glitch { 
+    position: relative; 
+    color: white; 
+    font-family: var(--font-heading); 
+    font-size: 7rem; 
+    font-weight: 900; 
+    letter-spacing: 10px; 
+    line-height: 1; 
+}
+
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--alpha-green);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--alpha-blue);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(11px, 9999px, 86px, 0); }
+    20% { clip: rect(66px, 9999px, 11px, 0); }
+    40% { clip: rect(33px, 9999px, 112px, 0); }
+    60% { clip: rect(99px, 9999px, 13px, 0); }
+    80% { clip: rect(18px, 9999px, 101px, 0); }
+    100% { clip: rect(72px, 9999px, 45px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip: rect(65px, 9999px, 100px, 0); }
+    20% { clip: rect(10px, 9999px, 50px, 0); }
+    40% { clip: rect(80px, 9999px, 20px, 0); }
+    60% { clip: rect(25px, 9999px, 85px, 0); }
+    80% { clip: rect(95px, 9999px, 15px, 0); }
+    100% { clip: rect(40px, 9999px, 70px, 0); }
+}
+
+/* =========================================
+   5. INFINITE MARQUEE
+   ========================================= */
 .marquee-container {
-    width: 100vw; overflow: hidden; background: var(--alpha-green); color: var(--bg-dark);
-    padding: 15px 0; font-family: var(--font-heading); font-weight: 900; font-size: 1.2rem;
-    letter-spacing: 3px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1);
+    width: 100vw; 
+    overflow: hidden; 
+    background: var(--alpha-green); 
+    color: var(--bg-dark);
+    padding: 15px 0; 
+    font-family: var(--font-heading); 
+    font-weight: 900; 
+    font-size: 1.2rem;
+    letter-spacing: 3px; 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.marquee-content { display: inline-flex; white-space: nowrap; animation: marquee 20s linear infinite; }
-.marquee-content span { padding: 0 50px; }
-@keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
 
-/* Hero Typography */
-.hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
-.glitch { position: relative; color: white; font-family: var(--font-heading); font-size: 7rem; font-weight: 900; letter-spacing: 10px; line-height: 1; }
-/* ... (Keep your existing glitch keyframes here) ... */
+.marquee-content { 
+    display: inline-flex; 
+    white-space: nowrap; 
+    animation: marquee 20s linear infinite; 
+}
 
-/* 3D Glass Cards */
+.marquee-content span { 
+    padding: 0 50px; 
+}
+
+@keyframes marquee { 
+    0% { transform: translate3d(0, 0, 0); } 
+    100% { transform: translate3d(-50%, 0, 0); } 
+}
+
+/* =========================================
+   6. MAGNETIC BUTTONS
+   ========================================= */
+.btn-magnetic {
+    display: inline-flex; 
+    justify-content: center; 
+    align-items: center;
+    padding: 20px 45px; 
+    font-family: var(--font-heading);
+    text-decoration: none; 
+    font-weight: bold; 
+    letter-spacing: 3px; 
+    text-transform: uppercase;
+    background: transparent; 
+    color: var(--text-light); 
+    border: 1px solid rgba(0, 255, 204, 0.5);
+    border-radius: 50px; 
+    position: relative; 
+    overflow: hidden; 
+    transition: color 0.4s ease, border-color 0.4s ease;
+    will-change: transform; 
+}
+
+.btn-magnetic::before {
+    content: ''; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: var(--alpha-green); 
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); 
+    z-index: -1;
+    border-radius: 50px;
+}
+
+.btn-magnetic:hover::before { 
+    transform: translateY(-100%); 
+}
+
+.btn-magnetic:hover { 
+    color: var(--bg-dark); 
+    border-color: var(--alpha-green); 
+}
+
+/* =========================================
+   7. 3D GLASS CARDS
+   ========================================= */
 .card {
-    background: linear-gradient(145deg, rgba(20,20,20,0.4) 0%, rgba(5,5,5,0.8) 100%);
+    background: linear-gradient(145deg, rgba(20,20,20,0.6) 0%, rgba(5,5,5,0.9) 100%);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 50px; border-radius: 15px; backdrop-filter: blur(10px);
-    transition: border-color 0.4s ease, transform 0.1s; /* Transform handled by JS */
+    padding: 50px; 
+    border-radius: 20px; 
+    backdrop-filter: blur(15px);
+    transition: border-color 0.4s ease; 
     transform-style: preserve-3d;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
-.card:hover { border-color: rgba(0, 255, 204, 0.3); }
-.card > * { transform: translateZ(30px); /* Pushes text outward for 3D effect */ }
 
-/* Reveal Animation */
-.reveal { opacity: 0; transform: translateY(60px) scale(0.95); transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1); filter: blur(10px); }
-.reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-
-/* Global Utilities */
-.container { max-width: 1400px; margin: 0 auto; padding: 150px 20px 100px; }
-.section-title { font-family: var(--font-heading); font-size: 4rem; margin-bottom: 60px; letter-spacing: -1px; text-transform: uppercase; font-weight: 900; }
-.section-title span { color: transparent; -webkit-text-stroke: 1px var(--alpha-green); }
-
-/* Buttons */
-.btn-primary {
-    display: inline-block; padding: 18px 40px; font-family: var(--font-heading);
-    text-decoration: none; font-weight: bold; letter-spacing: 3px; text-transform: uppercase;
-    background: transparent; color: var(--text-light); border: 1px solid var(--alpha-green);
-    position: relative; overflow: hidden; transition: all 0.5s ease;
+.card:hover { 
+    border-color: rgba(0, 255, 204, 0.2); 
 }
-.btn-primary::before {
-    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-    background: var(--alpha-green); transition: all 0.5s ease; z-index: -1;
+
+.card > * { 
+    transform: translateZ(30px); /* Pushes text outward for 3D effect */ 
 }
-.btn-primary:hover::before { left: 0; }
-.btn-primary:hover { color: var(--bg-dark); box-shadow: 0 0 30px rgba(0, 255, 204, 0.5); }
+
+.card.no-tilt > * {
+    transform: none; /* Prevents input fields from floating weirdly */
+}
+
+/* =========================================
+   8. PREMIUM FLOATING-LABEL FORMS
+   ========================================= */
+.premium-form .form-group { 
+    position: relative; 
+    margin-bottom: 40px; 
+}
+
+.premium-form input, .premium-form textarea {
+    width: 100%; 
+    padding: 10px 0; 
+    background: transparent; 
+    border: none; 
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+    color: var(--text-light); 
+    font-family: var(--font-body); 
+    font-size: 1.1rem;
+    transition: border-color 0.4s ease; 
+    resize: none; 
+    border-radius: 0;
+}
+
+.premium-form input:focus, .premium-form textarea:focus { 
+    outline: none; 
+    border-bottom-color: var(--alpha-green); 
+}
+
+.premium-form label {
+    position: absolute; 
+    top: 10px; 
+    left: 0; 
+    color: #777; 
+    font-family: var(--font-heading);
+    font-size: 1rem; 
+    letter-spacing: 1px; 
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* The magic floating effect */
+.premium-form input:focus ~ label, 
+.premium-form input:valid ~ label,
+.premium-form textarea:focus ~ label, 
+.premium-form textarea:valid ~ label {
+    top: -20px; 
+    font-size: 0.75rem; 
+    color: var(--alpha-green);
+}
+
+/* =========================================
+   9. SCROLL REVEAL ANIMATIONS
+   ========================================= */
+.reveal { 
+    opacity: 0; 
+    transform: translateY(40px); 
+    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1); 
+}
+
+.reveal.active { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+/* =========================================
+   10. FOOTER & PARTICLES
+   ========================================= */
+#particle-canvas { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    z-index: -1; 
+}
+
+footer { 
+    text-align: center; 
+    padding: 40px; 
+    background: #020202; 
+    border-top: 1px solid rgba(255,255,255,0.05); 
+    font-family: var(--font-heading); 
+    font-size: 0.9rem; 
+    color: #555; 
+}
