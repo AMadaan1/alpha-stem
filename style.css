@@ -1,65 +1,4 @@
-:root {
-    --bg-dark: #020202;
-    --text-light: #ffffff;
-    --text-muted: #e0e0e0; 
-    --alpha-green: #00ffcc;
-    --alpha-blue: #0044ff;
-    --font-heading: 'Orbitron', sans-serif;
-    --font-body: 'JetBrains Mono', monospace;
-}
-
-/* Base resets */
-* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
-body {
-    background-color: var(--bg-dark); color: var(--text-light);
-    font-family: var(--font-body); line-height: 1.8; overflow-x: hidden;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-}
-
-/* Desktop-Only Custom Cursor */
-@media (pointer: fine) {
-    * { cursor: none !important; }
-}
-#custom-cursor {
-    position: fixed; top: 0; left: 0; width: 12px; height: 12px;
-    background-color: var(--alpha-green); border-radius: 50%;
-    pointer-events: none; z-index: 99999; transform: translate(-50%, -50%);
-    transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), height 0.3s cubic-bezier(0.19, 1, 0.22, 1), background-color 0.3s;
-    mix-blend-mode: exclusion;
-}
-#custom-cursor.hover { width: 60px; height: 60px; background-color: #fff; }
-
-/* Typography & Layouts */
-p { color: var(--text-muted); font-weight: 300; font-size: 1.1rem; }
-.container { max-width: 1400px; margin: 0 auto; padding: 150px 20px 100px; }
-.section-title { font-family: var(--font-heading); font-size: 4rem; margin-bottom: 60px; letter-spacing: -1px; text-transform: uppercase; font-weight: 900; }
-.section-title span { color: transparent; -webkit-text-stroke: 1px var(--alpha-green); }
-
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-
-/* Ultra-Glass Navigation */
-nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 25px 50px; background: rgba(2, 2, 2, 0.7);
-    backdrop-filter: blur(25px) saturate(200%); -webkit-backdrop-filter: blur(25px);
-    position: fixed; width: 100%; top: 0; z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-.logo a { font-family: var(--font-heading); font-weight: 900; font-size: 1.8rem; letter-spacing: 5px; color: var(--text-light); text-decoration: none; }
-.nav-links a {
-    color: #999; text-decoration: none; margin-left: 40px;
-    font-family: var(--font-heading); font-size: 0.85rem; letter-spacing: 1.5px;
-    transition: color 0.4s ease; text-transform: uppercase;
-}
-.nav-links a:hover, .nav-links a.active { color: var(--alpha-green); }
-
-/* Hero Section */
-.hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
-.page-header { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-
-/* NEW: The Premium Typewriter Effect */
+/* NEW: The Premium Typewriter Effect (Stepped & Disappearing Cursor) */
 .hero-title {
     font-family: var(--font-heading);
     font-size: 7rem;
@@ -67,108 +6,26 @@ nav {
     letter-spacing: 10px;
     color: var(--text-light);
     display: inline-block;
-    overflow: hidden; /* Hides text before it is "typed" */
-    white-space: nowrap; /* Prevents text from wrapping */
-    border-right: 8px solid var(--alpha-green); /* The blinking cursor */
-    max-width: 0; /* Starts at zero width */
+    overflow: hidden; 
+    white-space: nowrap; 
+    border-right: 8px solid transparent; /* Starts invisible */
+    max-width: 0; 
+    padding-right: 8px; 
     
-    /* Animation triggers typing effect over 1.2s, and cursor blink infinitely */
-    animation: type-in 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards, cursor-blink 0.8s step-end infinite;
-    padding-right: 8px; /* Keeps cursor from hugging the text too tight */
+    /* 1. type-in: Jumps exactly 5 times (for the 5 letters in ALPHA)
+      2. cursor-blink: Blinks 4 times then stops permanently on transparent.
+    */
+    animation: 
+        type-in 1s steps(5, end) 0.5s forwards, 
+        cursor-blink 0.4s step-end 4 0.5s forwards;
 }
 
 @keyframes type-in {
     0% { max-width: 0; }
-    100% { max-width: 1000px; } /* Expands to reveal the full text */
+    100% { max-width: 5.5em; } /* Uses 'em' so it perfectly scales on mobile */
 }
 
 @keyframes cursor-blink {
     0%, 100% { border-color: transparent; }
     50% { border-color: var(--alpha-green); }
-}
-
-/* Infinite Marquee */
-.marquee-container {
-    width: 100vw; overflow: hidden; background: var(--alpha-green); color: var(--bg-dark);
-    padding: 15px 0; font-family: var(--font-heading); font-weight: 900; font-size: 1.2rem; letter-spacing: 3px; 
-}
-.marquee-content { display: inline-flex; white-space: nowrap; animation: marquee 20s linear infinite; }
-.marquee-content span { padding: 0 50px; }
-@keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
-
-/* Magnetic Buttons */
-.btn-primary, .btn-secondary, .btn-magnetic {
-    display: inline-flex; justify-content: center; align-items: center;
-    padding: 20px 45px; font-family: var(--font-heading);
-    text-decoration: none; font-weight: bold; letter-spacing: 3px; text-transform: uppercase;
-    background: transparent; color: var(--text-light); border: 1px solid rgba(0, 255, 204, 0.5);
-    border-radius: 50px; position: relative; overflow: hidden; 
-    transition: color 0.4s ease, border-color 0.4s ease; will-change: transform; 
-}
-.btn-primary::before, .btn-secondary::before, .btn-magnetic::before {
-    content: ''; position: absolute; top: 100%; left: 0; width: 100%; height: 100%;
-    background: var(--alpha-green); transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); z-index: -1; border-radius: 50px;
-}
-.btn-primary:hover::before, .btn-secondary:hover::before, .btn-magnetic:hover::before { transform: translateY(-100%); }
-.btn-primary:hover, .btn-secondary:hover, .btn-magnetic:hover { color: var(--bg-dark); border-color: var(--alpha-green); }
-
-/* 3D Glass Cards & Media */
-.card {
-    background: linear-gradient(145deg, rgba(20,20,20,0.6) 0%, rgba(5,5,5,0.9) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.05); padding: 50px; border-radius: 20px; 
-    backdrop-filter: blur(15px); transition: border-color 0.4s ease; transform-style: preserve-3d;
-}
-.card:hover { border-color: rgba(0, 255, 204, 0.2); }
-.card > * { transform: translateZ(30px); }
-.card.no-tilt > * { transform: none; }
-.card-date { color: var(--alpha-green); font-family: var(--font-heading); font-size: 0.9rem; margin-bottom: 15px; letter-spacing: 2px; }
-
-.team-member { text-align: center; }
-.team-avatar { width: 180px; height: 180px; margin: 0 auto 25px auto; border-radius: 50%; border: 3px solid transparent; background-color: #111; background-size: cover; background-position: center; transition: all 0.4s ease; filter: grayscale(50%); }
-.team-member:hover .team-avatar { border-color: var(--alpha-green); filter: grayscale(0%); transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 255, 204, 0.3); }
-.role { color: var(--alpha-green); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;}
-
-.media-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.media-item { height: 250px; background: #111; border-radius: 8px; overflow: hidden; position: relative; }
-.media-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; filter: brightness(0.7); }
-.media-item:hover img { transform: scale(1.1); filter: brightness(1); }
-
-/* Premium Floating Forms */
-.premium-form .form-group { position: relative; margin-bottom: 40px; }
-.premium-form input, .premium-form textarea { width: 100%; padding: 10px 0; background: transparent; border: none; border-bottom: 2px solid rgba(255,255,255,0.1); color: var(--text-light); font-family: var(--font-body); font-size: 1.1rem; transition: border-color 0.4s ease; resize: none; border-radius: 0; }
-.premium-form input:focus, .premium-form textarea:focus { outline: none; border-bottom-color: var(--alpha-green); }
-.premium-form label { position: absolute; top: 10px; left: 0; color: #777; font-family: var(--font-heading); font-size: 1rem; letter-spacing: 1px; pointer-events: none; transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
-.premium-form input:focus ~ label, .premium-form input:valid ~ label, .premium-form textarea:focus ~ label, .premium-form textarea:valid ~ label { top: -20px; font-size: 0.75rem; color: var(--alpha-green); }
-
-/* Reveal & Particle Base */
-.reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.19, 1, 0.22, 1); }
-.reveal.active { opacity: 1; transform: translateY(0); }
-#particle-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
-footer { text-align: center; padding: 40px; background: #020202; border-top: 1px solid rgba(255,255,255,0.05); font-family: var(--font-heading); font-size: 0.9rem; color: #555; }
-
-/* =========================================
-   MOBILE OPTIMIZATION
-   ========================================= */
-@media (max-width: 900px) {
-    .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 40px; }
-}
-
-@media (max-width: 768px) {
-    nav { padding: 15px; flex-direction: column; gap: 15px; }
-    .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-    .nav-links a { margin: 0; font-size: 0.75rem; }
-    .hero-title { font-size: 4rem; letter-spacing: 5px; } /* Shrunk for mobile */
-    .section-title { font-size: 2.2rem; margin-bottom: 30px; line-height: 1.2; }
-    p { font-size: 1rem; }
-    .container { padding: 120px 20px 60px; }
-    .card { padding: 30px; }
-    .hero p { font-size: 1.1rem !important; }
-    .card > * { transform: none !important; }
-    .card:hover { transform: none !important; }
-}
-
-@media (hover: none) and (pointer: coarse) {
-    #custom-cursor { display: none !important; }
-    * { cursor: auto !important; }
-    .btn-magnetic:hover { transform: none !important; }
 }
