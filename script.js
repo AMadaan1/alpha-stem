@@ -2,21 +2,14 @@
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768;
 
 // --- 2. Custom Fluid Cursor (Desktop Only) ---
-const cursor = document.getElementById('custom-cursor') || document.createElement('div');
-if (!document.getElementById('custom-cursor') && !isTouchDevice) {
-    cursor.id = 'custom-cursor';
-    document.body.appendChild(cursor);
-}
-
+const cursor = document.getElementById('custom-cursor');
 let mouseX = 0;
 let mouseY = 0;
 let cursorX = 0;
 let cursorY = 0;
 let hasMoved = false;
 
-if (!isTouchDevice) {
-    cursor.style.opacity = '0';
-
+if (!isTouchDevice && cursor) {
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -24,6 +17,8 @@ if (!isTouchDevice) {
             cursorX = mouseX;
             cursorY = mouseY;
             cursor.style.opacity = '1';
+            // Safe-activation: Only triggers global hide rule once cursor successfully maps vector coordinates
+            document.body.classList.add('custom-cursor-active');
             hasMoved = true;
         }
     });
@@ -188,25 +183,19 @@ if (typewriterElement) {
     const textToType = "ALPHA";
     let charIndex = 0;
     
-    // Start with just the blinking cursor
     typewriterElement.innerHTML = '<span class="blinking-cursor"></span>';
     
-    // Wait half a second before typing
     setTimeout(() => {
         const typingInterval = setInterval(() => {
             if (charIndex < textToType.length) {
-                // Type next letter and keep the cursor at the end
                 typewriterElement.innerHTML = textToType.substring(0, charIndex + 1) + '<span class="blinking-cursor"></span>';
                 charIndex++;
             } else {
-                // Done typing, stop the interval
                 clearInterval(typingInterval);
-                
-                // Wait 1.5 seconds, then permanently delete the cursor
                 setTimeout(() => {
                     typewriterElement.innerHTML = textToType;
                 }, 1500);
             }
-        }, 150); // 150ms delay between each letter
+        }, 150);
     }, 500); 
 }
